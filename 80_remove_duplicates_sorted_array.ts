@@ -1,0 +1,11 @@
+function removeDuplicatesV2(nums: number[]): number {
+  let k = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[i - 1] || nums[i] !== nums[i + 1]) {
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+
+  return k;
+}
