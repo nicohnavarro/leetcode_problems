@@ -24,7 +24,8 @@ class RandomizedSet {
 
     this.elements[index] = lastElement;
     this.indexMap.set(lastElement, index);
-
+    console.log("before", this.indexMap);
+    console.log("Before", this.elements);
     this.elements.pop();
     this.indexMap.delete(val);
     console.log("elements", this.elements);
@@ -47,3 +48,11 @@ class RandomizedSet {
  * var param_2 = obj.remove(val)
  * var param_3 = obj.getRandom()
  */
+
+const obj = new RandomizedSet();
+console.log(obj.insert(1));
+console.log(obj.remove(2));
+console.log(obj.insert(2));
+console.log(obj.insert(3));
+console.log(obj.remove(2));
+console.log(obj.getRandom());
