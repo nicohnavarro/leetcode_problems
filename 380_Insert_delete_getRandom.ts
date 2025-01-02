@@ -11,8 +11,6 @@ class RandomizedSet {
     if (this.indexMap.has(val)) return false;
     this.elements.push(val);
     this.indexMap.set(val, this.elements.length - 1);
-    console.log("elements", this.elements);
-    console.log("indexMap", this.indexMap);
     return true;
   }
 
@@ -24,30 +22,16 @@ class RandomizedSet {
 
     this.elements[index] = lastElement;
     this.indexMap.set(lastElement, index);
-    console.log("before", this.indexMap);
-    console.log("Before", this.elements);
     this.elements.pop();
     this.indexMap.delete(val);
-    console.log("elements", this.elements);
-    console.log("indexMap", this.indexMap);
     return true;
   }
 
   getRandom(): number {
-    console.log("elements", this.elements);
-    console.log("indexMap", this.indexMap);
     const randomFromArray = Math.floor(Math.random() * this.elements.length);
     return this.elements[randomFromArray];
   }
 }
-
-/**
- * Your RandomizedSet object will be instantiated and called as such:
- * var obj = new RandomizedSet()
- * var param_1 = obj.insert(val)
- * var param_2 = obj.remove(val)
- * var param_3 = obj.getRandom()
- */
 
 const obj = new RandomizedSet();
 console.log(obj.insert(1));
