@@ -1,8 +1,8 @@
-function canCompleteCircuit(gas: number[], cost: number[]): number {
+function gasCalculation(gas: number[], cost: number[]): number {
   const n = gas.length;
+  let startIndex = 0;
   let totalGas = 0;
   let tank = 0;
-  let startIndex = 0;
 
   for (let i = 0; i < n; i++) {
     const diff = gas[i] - cost[i];
@@ -10,8 +10,8 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
     tank += diff;
 
     if (tank < 0) {
-      startIndex = i + 1;
       tank = 0;
+      startIndex = i + 1;
     }
   }
 
@@ -20,5 +20,4 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
 
 const gas = [1, 2, 3, 4, 5];
 const cost = [3, 4, 5, 1, 2];
-
-console.log(canCompleteCircuit(gas, cost));
+console.log(gasCalculation(gas, cost));
