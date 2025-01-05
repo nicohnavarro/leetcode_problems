@@ -1,101 +1,55 @@
-// This solution dont work
-// Even using recursion you break Nodejs  heap limit
 function findSubstring(s: string, words: string[]): number[] {
-  const ans: number[] = [];
-  const possibleComb = phraseGenerator(words);
-
-  for (const word of possibleComb) {
-    let startIndex = 0;
-    while (startIndex < s.length) {
-      const found = s.indexOf(word, startIndex);
-
-      if (found === -1) break;
-
-      ans.push(found);
-      startIndex = found + 1;
-    }
-  }
-  const exclude = [...new Set(ans)].sort((a, b) => a - b);
-  return exclude;
-}
-
-// Generate possibles words with recursion
-function phraseGenerator(words: string[]) {
-  if (words.length === 1) return [words[0]];
-
-  const combinations: string[] = [];
-
-  words.forEach((word, i) => {
-    const remainingWords = words.slice(0, i).concat(words.slice(i + 1));
-    phraseGenerator(remainingWords).forEach((combination) => {
-      combinations.push(word + combination);
-    });
-  });
-  return combinations;
-}
-
-// Real soluction
-function findSubstringV2(s: string, words: string[]): number[] {
   const result: number[] = [];
   const wordLength = words[0].length;
   const numWords = words.length;
   const substringLength = wordLength * numWords;
 
-  // Create a frequency map for words
+  if (s.length < substringLength) return result;
+
+  // Build a frequency map for the words
   const wordCount = new Map<string, number>();
   for (const word of words) {
     wordCount.set(word, (wordCount.get(word) || 0) + 1);
   }
 
-  // Slide over the string
-  for (let i = 0; i <= s.length - substringLength; i++) {
-    const seen = new Map<string, number>();
-    let j = 0;
+  // Iterate through the string using a sliding window
+  for (let i = 0; i < wordLength; i++) {
+    let left = i;
+    let right = i;
+    let currentCount = new Map<string, number>();
 
-    // Check each word in the current substring
-    while (j < numWords) {
-      const start = i + j * wordLength;
-      const word = s.substring(start, wordLength);
+    while (right + wordLength <= s.length) {
+      // Extract the current word
+      const word = s.substring(right, right + wordLength);
+      right += wordLength;
 
-      if (!wordCount.has(word)) break;
+      // If the word is in the wordCount map
+      if (wordCount.has(word)) {
+        currentCount.set(word, (currentCount.get(word) || 0) + 1);
 
-      seen.set(word, (seen.get(word) || 0) + 1);
+        // If the count of the current word exceeds its allowed frequency, slide the window
+        while (currentCount.get(word)! > wordCount.get(word)!) {
+          const leftWord = s.substring(left, left + wordLength);
+          currentCount.set(leftWord, currentCount.get(leftWord)! - 1);
+          left += wordLength;
+        }
 
-      if (seen.get(word)! > wordCount.get(word)!) break;
-
-      j++;
-    }
-
-    // If all words match, add the starting index
-    if (j === numWords) {
-      result.push(i);
+        // If the window matches the length of the concatenated words, record the start index
+        if (right - left === substringLength) {
+          result.push(left);
+        }
+      } else {
+        // Reset the window if the word is not in the wordCount map
+        currentCount.clear();
+        left = right;
+      }
     }
   }
 
   return result;
 }
 
-const s = "fffffffffffffffffffffffffffffffff";
-const words = [
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-  "a",
-];
-console.log(findSubstringV2(s, words));
+const s = "foobarfoobarthefoobarman";
+const words = ["bar", "foo", "the"];
+
+console.log(findSubstring(s, words));
