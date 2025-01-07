@@ -5,3 +5,7 @@
 **Medium**
 
 **Easy**
+
+### Others
+
+![Binary tree](image.png)
