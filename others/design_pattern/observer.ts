@@ -85,24 +85,27 @@ const unsubcriber = orderDB.instance.onAfterAdd(({ value }) => {
 });
 
 orderDB.instance.set({
-  id: "123",
+  id: Date.now().toString(),
   type: "BUY",
-  price: 123,
+  price: 243,
+  symbol: "AAPL",
   qty: BigInt(123),
 });
 
 orderDB.instance.set({
-  id: "124",
-  type: "SELL",
-  price: 123,
+  id: Date.now().toString(),
+  type: "BUY",
+  price: 243,
+  symbol: "AAPL",
   qty: BigInt(123),
 });
 
 unsubcriber();
 
 orderDB.instance.set({
-  id: "125",
+  id: Date.now().toString(),
   type: "BUY",
-  price: 123,
+  price: 243,
+  symbol: "AAPL",
   qty: BigInt(123),
 });

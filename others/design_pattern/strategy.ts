@@ -45,16 +45,18 @@ function createDatabase<T extends BaseRecord>() {
 
 const orderDB = createDatabase<Order>();
 orderDB.instance.set({
-  id: "123",
+  id: Date.now().toString(),
   type: "BUY",
   price: 250,
+  symbol: "MSFT",
   qty: BigInt(123),
 });
 
 orderDB.instance.set({
-  id: "124",
+  id: Date.now().toString(),
   type: "SELL",
-  price: 123,
+  price: 250.3,
+  symbol: "AAPL",
   qty: BigInt(256),
 });
 

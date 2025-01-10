@@ -49,18 +49,20 @@ function createDatabaseSingletonV2<T extends BaseRecord>() {
 // Just call once
 const orderDBV1 = createDatabaseSingletonV1<Order>();
 orderDBV1.set({
-  id: "100",
+  id: Date.now().toString(),
   type: "BUY",
-  price: 123,
+  price: 243,
+  symbol: "AAPL",
   qty: BigInt(123),
 });
 
 // Just call once but with instance
 const orderDBV2 = createDatabaseSingletonV2<Order>();
 orderDBV2.instance.set({
-  id: "101",
-  type: "SELL",
-  price: 250,
+  id: Date.now().toString(),
+  type: "BUY",
+  price: 243,
+  symbol: "AAPL",
   qty: BigInt(123),
 });
 

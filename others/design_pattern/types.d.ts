@@ -3,4 +3,5 @@ export interface Order {
   type: "BUY" | "SELL";
   price: number;
   qty: BigInt;
+  symbol: string;
 }

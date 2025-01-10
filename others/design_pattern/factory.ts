@@ -28,9 +28,10 @@ function createDatabaseFactory<T extends BaseRecord>() {
 const OrderDB = createDatabaseFactory<Order>();
 const orderDB = new OrderDB();
 orderDB.set({
-  id: "123",
+  id: Date.now().toString(),
   type: "BUY",
-  price: 123,
+  price: 243,
+  symbol: "AAPL",
   qty: BigInt(123),
 });
 
