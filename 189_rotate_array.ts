@@ -29,3 +29,7 @@ function rotateV2(nums: number[], k: number): void {
   for (let i = 0; i < nums.length; i++)
     nums[(i + k) % nums.length] = originalNums[i];
 }
+
+const testRotateNum = [1, 2, 3, 4, 5, 6, 7, 8];
+rotateV2(testRotateNum, 2);
+console.log(testRotateNum);
