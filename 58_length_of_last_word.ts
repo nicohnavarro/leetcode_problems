@@ -14,8 +14,8 @@ function lengthOfLastWord(s: string): number {
   return ans;
 }
 
-const test = ["Hello World", "hello world ", " Other word last  ", "a"];
+const testLength = ["Hello World", "hello world ", " Other word last  ", "a"];
 
-for (const word of test) {
+for (const word of testLength) {
   console.log(lengthOfLastWord(word));
 }

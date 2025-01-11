@@ -15,7 +15,7 @@ function jump(nums: number[]): number {
 }
 
 const nums1 = [2, 3, 1, 1, 4];
-const nums2 = [2, 3, 0, 1, 4];
+const nums2 = [2, 2, 0, 1, 4];
 
 console.log(jump(nums1));
 console.log(jump(nums2));
