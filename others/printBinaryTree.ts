@@ -2,7 +2,14 @@
 // Traverse
 // Djskatra
 // Dinamic Programming
-const rootNode = {
+
+type NodeType = {
+  value: number;
+  left: NodeType | null;
+  right: NodeType | null;
+};
+
+const rootNode: NodeType = {
   value: 1,
   left: {
     value: 2,
@@ -67,7 +74,7 @@ for (let i = 0; i < levels.length; i++) {
 }
 
 // But using.. BFS? with a queue
-function traverse(node: any) {
+function traverse(node: NodeType) {
   const queue: any[] = [];
   let lastDepth = 0;
   let output = "";
