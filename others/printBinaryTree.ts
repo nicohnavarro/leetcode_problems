@@ -94,4 +94,26 @@ function traverse(node: NodeType) {
   console.log(output);
 }
 
+function traverseV2(node: NodeType): string {
+  const queue: any = [];
+  let lastDepth = 0;
+  let output = "";
+  queue.push({ node: node, depth: 0 });
+  while (queue.length > 0) {
+    const { node, depth } = queue.shift();
+    if (lastDepth < depth) {
+      output += "\n";
+      lastDepth = depth;
+    }
+    output += node.value + " ";
+
+    if (node.left) queue.push({ node: node.left, depth: depth + 1 });
+    if (node.right) queue.push({ node: node.right, depth: depth + 1 });
+  }
+
+  console.log(output);
+  return output;
+}
+
 traverse(rootNode);
+traverseV2(rootNode);
