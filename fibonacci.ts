@@ -1,18 +1,6 @@
-// Bored
-function fib(n: number): number {
-  return n <= 1 ? 1 : fib(n - 1) + fib(n - 2);
-}
-
-// Recursion
+// Recursive
 function fibRecursive(n: number): number {
-  let a = 1;
-  let b = 1;
-  for (let i = 1; i < n; i++) {
-    const temp = a;
-    a = b;
-    b = temp + b;
-  }
-  return b;
+  return n <= 1 ? 1 : fibRecursive(n - 1) + fibRecursive(n - 2);
 }
 
 // Recursion + Memozaition
@@ -26,9 +14,20 @@ function fibMemoized(n: number, memo: Map<number, number> = new Map()): number {
   return result;
 }
 
-const fibTest = 400;
+// Iterative
+function fibIterative(n: number): number {
+  let a = 1;
+  let b = 1;
+  for (let i = 1; i < n; i++) {
+    const temp = a;
+    a = b;
+    b = temp + b;
+  }
+  return b;
+}
 
-// Definir el tipo de los resultados
+const fibTest = 500;
+
 type TaskResult = {
   type: string;
   result: number;
@@ -36,12 +35,6 @@ type TaskResult = {
 };
 
 const tasks: Promise<TaskResult>[] = [
-  new Promise((resolve) => {
-    const start = performance.now();
-    const result = fib(fibTest);
-    const end = performance.now();
-    resolve({ type: "Normal", result, time: end - start });
-  }),
   new Promise((resolve) => {
     const start = performance.now();
     const result = fibRecursive(fibTest);
@@ -53,6 +46,12 @@ const tasks: Promise<TaskResult>[] = [
     const result = fibMemoized(fibTest);
     const end = performance.now();
     resolve({ type: "Memoized", result, time: end - start });
+  }),
+  new Promise((resolve) => {
+    const start = performance.now();
+    const result = fibRecursive(fibTest);
+    const end = performance.now();
+    resolve({ type: "Iterative", result, time: end - start });
   }),
 ];
 
