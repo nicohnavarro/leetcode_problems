@@ -12,34 +12,6 @@ function findSubstring(s: string, words: string[]): number[] {
     wordCount.set(word, (wordCount.get(word) || 0) + 1);
   }
 
-  for (let i = 0; i < wordLength; i++) {
-    let left = i;
-    let right = i;
-    let currentCount = new Map<string, number>();
-
-    while (right + wordLength <= s.length) {
-      const word = s.substring(right, right + wordLength);
-      right += wordLength;
-
-      if (wordCount.has(word)) {
-        currentCount.set(word, (currentCount.get(word) || 0) + 1);
-
-        while (currentCount.get(word)! > wordCount.get(word)!) {
-          const leftWord = s.substring(left, left + wordLength);
-          currentCount.set(leftWord, currentCount.get(leftWord)! + 1);
-          left += wordLength;
-        }
-
-        if (right - left === substringLength) {
-          result.push(left);
-        }
-      } else {
-        currentCount.clear();
-        left = right;
-      }
-    }
-  }
-
   // Iterate through the string using a sliding window
   for (let i = 0; i < wordLength; i++) {
     let left = i;
