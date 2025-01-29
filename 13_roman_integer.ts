@@ -22,5 +22,4 @@ function romanToInt(s: string): number {
 }
 
 const romanNumber = "XXVVIII";
-
 console.log(romanToInt(romanNumber));

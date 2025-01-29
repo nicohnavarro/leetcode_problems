@@ -14,7 +14,6 @@ function gasCalculation(gas: number[], cost: number[]): number {
       startIndex = i + 1;
     }
   }
-
   return totalGas >= 0 ? startIndex : -1;
 }
 

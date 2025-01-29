@@ -6,7 +6,6 @@ function isPalindrome(s: string): boolean {
 
 function isPalindromeLong(s: string): boolean {
   const preparedString = s.replace(" ", "").toLowerCase();
-
   let left = 0,
     right = preparedString.length - 1;
 
@@ -27,7 +26,6 @@ function isPalindromeLong(s: string): boolean {
       continue;
     } else if (!isAlphaNumeric(charCodeRight)) {
       right -= 1;
-
       continue;
     }
 
