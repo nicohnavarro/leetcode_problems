@@ -20,14 +20,11 @@ function buildTree(inorder: number[], postorder: number[]): TreeNode | null {
   // The last element of postorder is the root of the current tree
   const rootValue = postorder.pop()!;
   const root = new TreeNode(rootValue);
-
   // Find the index of the root in the inorder array
   const rootIndex = inorder.indexOf(rootValue);
-
   // Is time to recursion...
   root.right = buildTree(inorder.slice(rootIndex + 1), postorder);
   root.left = buildTree(inorder.slice(0, rootIndex), postorder);
-
   // console.log(root);
   return root;
 }
