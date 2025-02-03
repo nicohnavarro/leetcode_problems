@@ -56,18 +56,6 @@ function maxProfit4(prices: number[]) {
   return maxProfit;
 }
 
-function getProfit(prices: number[]): number {
-  let maxProfit = 0;
-  let lowerPrice = Number.MAX_VALUE;
-
-  for (let i = 0; i < prices.length; i++) {
-    lowerPrice = Math.min(lowerPrice, prices[i]);
-    maxProfit = Math.max(maxProfit, prices[i] - lowerPrice);
-  }
-
-  return maxProfit;
-}
-
 const test1 = [7, 1, 5, 3, 6, 4];
 const test2 = [7, 6, 4, 3, 1];
 const test3 = [2, 4, 1];
