@@ -9,7 +9,7 @@ class ListNode {
 
 function mergeTwoLists(
   list1: ListNode | null,
-  list2: ListNode | null,
+  list2: ListNode | null
 ): ListNode | null {
   const listNode = new ListNode();
 
@@ -29,7 +29,7 @@ function mergeTwoLists(
 
 function mergeTwoListsV2(
   list1: ListNode | null,
-  list2: ListNode | null,
+  list2: ListNode | null
 ): ListNode | null {
   const dummyList = new ListNode(-1);
   let current = dummyList;
@@ -55,7 +55,6 @@ function mergeTwoListsV2(
 
 const list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
 const list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
-
 const mergedList = mergeTwoLists(list1, list2);
 
 function printList(head: ListNode | null): void {
